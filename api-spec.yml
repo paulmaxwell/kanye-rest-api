@@ -6,10 +6,37 @@ info:
   contact:
     email: paul.maxwell@hey.com
 tags:
+  - name: quotes
   - name: users
 servers:
   - url: https://localhost:80/api
 paths:
+  /quotes:
+    get:
+      description: 'This endpoint retrieves cached quotes or fresh quotes if none are cached.'
+      operationId: 'get-quotes'
+      tags:
+        - quotes
+      parameters:
+        - $ref: '#/components/parameters/acceptJson'
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  quotes:
+                    type: array
+                    items:
+                      type: string
+              examples:
+                example1:
+                  value:
+                    quotes: ["Quote 1", "Quote 2", "Quote 3", "Quote 4", "Quote 5"]
   /user:
     post:
       description: 'This endpoint creates a new user and returns the API token.'
