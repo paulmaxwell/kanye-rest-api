@@ -20,7 +20,7 @@ class UserController extends Controller
             'name' => 'John Smith',
             'email' => $request->email,
             'password' => Hash::make('password123'),
-            'api_token' => $rawApiToken,
+            'api_token' => hash('sha256', $rawApiToken),
         ];
 
         $user = User::create($userData);

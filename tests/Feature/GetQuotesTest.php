@@ -17,7 +17,7 @@ class GetQuotesTest extends TestCase
         $hash = hash('sha256', $token);
         $this->createUser(['api_token' => $hash]);
 
-        $response = $this->get('/api/quotes', ['Authorization' => $token]);
+        $response = $this->get('/api/quotes', ['Authorization' => 'Bearer ' . $token]);
 
         $response->assertStatus(200);
     }
@@ -27,7 +27,7 @@ class GetQuotesTest extends TestCase
         $token = 'test-token';
         $this->createUser(['api_token' => $token]);
 
-        $response = $this->get('/api/quotes', ['Authorization' => 'incorrect-token']);
+        $response = $this->get('/api/quotes', ['Authorization' => 'Bearer incorrect-token']);
 
         $response->assertStatus(401);
     }
@@ -56,7 +56,7 @@ class GetQuotesTest extends TestCase
         ];
         Cache::put('quotes', $quotes);
 
-        $response = $this->get('/api/quotes', ['Authorization' => $token]);
+        $response = $this->get('/api/quotes', ['Authorization' => 'Bearer ' . $token]);
 
         $data = json_decode($response->getContent(), true);
 
@@ -85,7 +85,7 @@ class GetQuotesTest extends TestCase
             },
         ]);
 
-        $response = $this->get('/api/quotes', ['Authorization' => $token]);
+        $response = $this->get('/api/quotes', ['Authorization' => 'Bearer ' . $token]);
 
         $data = json_decode($response->getContent(), true);
 
