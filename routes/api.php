@@ -7,3 +7,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/user', [UserController::class, 'store'])->name('create-user');
 Route::get('/quotes', [QuotesController::class, 'index'])->name('get-quotes')->middleware(ApiTokenAuthMiddleware::class);
+Route::get('/fresh-quotes', [QuotesController::class, 'getFreshQuotes'])->name('get-quotes')->middleware(ApiTokenAuthMiddleware::class);

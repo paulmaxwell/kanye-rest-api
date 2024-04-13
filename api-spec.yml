@@ -11,6 +11,32 @@ tags:
 servers:
   - url: https://localhost:80/api
 paths:
+  /fresh-quotes:
+    get:
+      description: 'This endpoint retrieves fresh quotes from the API and stores them in the cache.'
+      operationId: 'get-fresh-quotes'
+      tags:
+        - quotes
+      parameters:
+        - $ref: '#/components/parameters/acceptJson'
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  quotes:
+                    type: array
+                    items:
+                      type: string
+              examples:
+                example1:
+                  value:
+                    quotes: ["Quote 1", "Quote 2", "Quote 3", "Quote 4", "Quote 5"]
   /quotes:
     get:
       description: 'This endpoint retrieves cached quotes or fresh quotes if none are cached.'

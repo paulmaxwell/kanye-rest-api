@@ -10,4 +10,9 @@ class QuotesController extends Controller
     {
         return app(QuotesManager::class)->quotes('cache');
     }
+
+    public function getFreshQuotes()
+    {
+        return app(QuotesManager::class)->driver('api')->quotes();
+    }
 }
