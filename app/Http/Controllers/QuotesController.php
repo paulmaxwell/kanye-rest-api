@@ -8,6 +8,6 @@ class QuotesController extends Controller
 {
     public function index()
     {
-        return app(QuotesManager::class)->quotes();
+        return app(QuotesManager::class)->quotes('cache');
     }
 }
