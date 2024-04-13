@@ -12,9 +12,9 @@ Follow these steps to get up and running.
 - Run `composer install`
 - Run `sail up`
 - The application should now be running at `localhost:80`
-- Run database migratios with `sail artisan migrate`
+- Run database migrations with `sail artisan migrate`
 
-The application should now be running. You can check by visiting `localhost:80` in the browser.
+The application should now be running and operational. You can check by visiting `localhost:80` in the browser.
 
 ## Using the API
 
@@ -22,7 +22,7 @@ There is an API spec in the project directory called `api-spec.yml`. Copy the co
 
 First, you must create a new user. Make a request to the `POST /user` endpoint, making sure to supply a unique email address. The response contains the API token for that user.
 
-Use newly created token as a bearer token on the `GET /quotes` and `GET /fresh-quotes` endpoints.
+Use your newly created token as a bearer token on the `GET /quotes` and `GET /fresh-quotes` endpoints.
 
 The `GET /quotes` endpoint returns quotes from the cache. If none are cached, it retrieves new ones from the external API and updates the cache.
 
