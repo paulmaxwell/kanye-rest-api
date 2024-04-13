@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  description: 'Kanye REST API Spec'
+  version: 1.0.0
+  title: Kanye REST API Spec
+  contact:
+    email: paul.maxwell@hey.com
+tags:
+  - name: users
+servers:
+  - url: https://localhost:80/api
+paths:
+  /user:
+    post:
+      description: 'This endpoint creates a new user and returns the API token.'
+      operationId: 'create-user'
+      tags:
+        - users
+      parameters:
+        - $ref: '#/components/parameters/acceptJson'
+      responses:
+        '200':
+          description: Success
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: 'john.smith@example.com'
+components:
+  parameters:
+    acceptJson:
+      in: header
+      name: "Accept"
+      schema:
+        type: string
+        default: application/json
