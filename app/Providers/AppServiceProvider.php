@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\Quotes\QuotesManager;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(
+            abstract: QuotesManager::class,
+            concrete: fn (Application $app) => new QuotesManager($app),
+        );
     }
 
     /**
