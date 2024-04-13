@@ -14,14 +14,19 @@ class UserController extends Controller
             'email' => 'required|email',
         ]);
 
+        $rawApiToken = \Str::random(10);
+
         $userData = [
             'name' => 'John Smith',
             'email' => $request->email,
             'password' => Hash::make('password123'),
+            'api_token' => $rawApiToken,
         ];
 
         $user = User::create($userData);
 
-        return $user;
+        return [
+            'apiToken' => $rawApiToken
+        ];
     }
 }
