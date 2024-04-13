@@ -16,7 +16,9 @@ class ApiTokenAuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $token = $request->header('Authorization');
+        // Remove "Bearer " prefix
+        $token = substr($request->header('Authorization'), 7);
+
         if (!$token) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
